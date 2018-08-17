@@ -1,11 +1,20 @@
 const express = require("express");
 const chalk = require('chalk');
 const path = require('path');
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const mongodb = require('mongodb').MongoClient;
+
+
 
 
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+//mongoDB ye bağlanma
+mongoose.connect("mongodb://localhost/blogDB");
+mongoose.Promise = global.Promise;
 
 app.use("/", require("./routes/api"));
 app.engine('ejs', require('ejs').__express);
@@ -21,22 +30,6 @@ app.use('/', (req, res, next) => {
     next()
 });
 */
-
-app.get('/', function (req, res) {
-    res.render('index')
-});
-
-app.get('/post', function (req, res) {
-    res.render('post')
-});
-
-app.get('/contact', function (req, res) {
-    res.render('contact')
-});
-
-app.get('/about', function (req, res) {
-    res.render('about')
-});
 
 
 
