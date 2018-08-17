@@ -12,34 +12,6 @@ router.use(bodyParser.json());
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
 
-/*
-router.get("/",function(req, res){
-    var getIndex = function (req, res) {
-
-        var url =
-
-            'mongodb://localhost:27017/blogDB';
-
-            mongodb.connect(url, function (err, db) {
-
-            var collection = db.getCollection('mesajs');
-
-            collection.find({
-
-                // get all
-
-            }).toArray(function (err, results) {
-
-                res.render('index', {
-
-                    mesajlar: results
-    
-                });
-            });
-        });
-    };
-});
-*/
 
 router.get("/", function (req, res) {
     //get data from mongoDB and pass it to the view
@@ -50,30 +22,6 @@ router.get("/", function (req, res) {
         res.render("index", { mesajlar: data });
     });
 });
-
-/*
-router.get("/post/:id", function (req, res) {
-    //get data from mongoDB
-    Mesaj.find({}, function (err, data) {
-        //data = json.toString(data);
-        if (err) throw err;
-        //mesajların length'i 2
-        res.render("post", { mesajlar:data });
-    });
-});
-*/
-
-
-
-
-
-/*
-router.get('/', function (req, res) {
-    //db.getCollection('mesajs').find({}) = mesajs;
-    res.render('index');
-
-});
-*/
 
 
 router.get('/post', function (req, res) {
@@ -94,10 +42,13 @@ router.get('/text-editor', function (req, res) {
 
 router.post("/text-editor", urlencodedParser, function (req, res) {
     var mesajım = new Mesaj(req.body);
-    mesajım.save().then(function (mesajım) {
-        res.send(mesajım.title + " Başlıklı yazı" + mesajım.date + " tarihiyle" + mesajım.editor_content + " içeriğiyle Başarıyla Paylaşıldı");
+    mesajım.save().then(function (mesajım){ 
+        Mesaj.find({}, function (err, data) {
+        //data = json.toString(data);
+        if (err) throw err;
+        res.render("successPost", { mesajlar: data });
     });
 });
-
+});
 
 module.exports = router;
