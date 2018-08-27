@@ -4,13 +4,15 @@ const path = require('path');
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const mongodb = require('mongodb').MongoClient;
-
-
+var objectId = require('mongodb').ObjectID;
+const paginate = require('express-paginate');
 
 
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+
 
 //mongoDB ye bağlanma
 mongoose.connect("mongodb://localhost/blogDB");
@@ -24,12 +26,6 @@ app.use(express.static(path.join(__dirname, 'views')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-/*
-app.use('/', (req, res, next) => {
-    res.locals.year = new Date().getFullYear()
-    next()
-});
-*/
 
 
 

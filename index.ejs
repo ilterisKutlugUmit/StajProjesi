@@ -75,7 +75,7 @@
             <div class="row">
                 <div class="col-md-10 ml-auto mr-auto">
                     
-                    <%for(i = mesajlar.length-1 ; i > -1 ; i = i - 1){%>
+                    <%for(i = results.length-1 ; i > -1 ; i = i - 1){%>
                     <article class="article-post mb70">
                         <a class="post-thumb mb30">
                             <img src="images/entry2.jpg" alt="" class="img-fluid">
@@ -84,18 +84,18 @@
                             </div>
                         </a>
                         <div class="post-content text-center">
-                            <h2 class="post-title"><%-mesajlar[i].title%></h2>
+                            <h2 class="post-title"><%-results[i].title%></h2>
                             <ul class="benimListem" >
                                 <li class="benimListemLi">
                                     <i class="fa fa-user-circle-o"></i> <p>İlteriş Kutluğ Ümit  /---/</p>
                                 </li>
                                 <li class="benimListemLi">
-                                    <i class="fa fa-calendar-o"></i><p><%-mesajlar[i].date%></p>
+                                    <i class="fa fa-calendar-o"></i><p><%-results[i].date%></p>
                                 </li>
                             </ul>
-                            <%-mesajlar[i].editor_content%>
+                            <%-results[i].editor_content%>
                             <br>
-                            <a href="/post?<%=mesajlar[i]._id%>" class="btn btn-outline-secondary">Read More</a>
+                            <a href="/post/<%-results[i]._id%>" class="btn btn-outline-secondary">Read More</a>
                         </div>
                     </article>
                     <%}%>
